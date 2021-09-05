@@ -25,5 +25,28 @@ public class StockAccount {
 		totalValue = 0.0;
 	}
 	
-	
+	public void addShare() {
+		
+		System.out.println("How many shares do you want to add ?");
+		int shareCount = scannerObject.nextInt();
+		
+		while(shareCount>0) {
+			
+			System.out.println("Enter the below details : ");
+			System.out.println("Stock Symbol");
+			String stockSymbol = scannerObject.next();
+			
+			System.out.println("Price of each Share");
+			double price = scannerObject.nextDouble();
+			
+			System.out.println("Number Of Shares : ");
+			int numberOfShares = scannerObject.nextInt();
+			
+			
+			CompanyShares stock = new CompanyShares(stockSymbol,numberOfShares,price);
+			MyNode<CompanyShares> stockNode = new MyNode<CompanyShares>(stock);
+			listOfShares.add(stockNode);
+			--shareCount;
+		}
+	}
 }
