@@ -1,27 +1,63 @@
 package com.bridgelabz.oop.commercialdataprocessing;
 
+import java.util.Scanner;
+
 public class Transaction {
 
 	public static void main(String[] args) {
 		
-		CompanyShares[] stockList = new CompanyShares[4];
-		CompanyShares idea = new CompanyShares("Idea", 100, 10, "1/2/2018 3:48");
-		CompanyShares reliance = new CompanyShares("Reliance", 120, 40, "1/6/2018 4:48");
-		CompanyShares perfios = new CompanyShares("Perfios", 50, 60, "2/9/2018 4:50");
-		CompanyShares netskope = new CompanyShares("Netskope", 200, 90, "15/9/2017 2:30");
-		stockList[0] = idea;
-		stockList[1] = reliance;
-		stockList[2] = perfios;
-		stockList[3] = netskope;
+		System.out.println("----- Welcome to Commercial Data Processing -----");
 		
-		StockAccount stockAccount = new StockAccount(stockList);
-		System.out.println(stockAccount);
+		Scanner scannerObject= new Scanner(System.in);	
+		StockAccount stocks = new StockAccount();
+		stocks.addShare();
+		stocks.valueOf();
 		
 		
-		double stockValue = stockAccount.valueOf();
-		System.out.println("Value is : "+stockValue);
+		while(true) {
+			System.out.println("Enter\n1: Add Shares\n2: Buy Stock\n3: Sell Stock\n4: Get Total Value\5: Display Stock Report\n6:Exit");
+			
+			int choice = scannerObject.nextInt();
+			switch(choice) {
+				case 1:
+					stocks.addShare();
+					stocks.valueOf();
+					break;
+				
+				case 2:
+					System.out.println("Enter the Stock Symbol : ");
+					String stockSymbol = scannerObject.next();
+					System.out.println("How many shares would you like to buy?");
+					int sharesAmount = scannerObject.nextInt();
+					stocks.buy(sharesAmount, stockSymbol);
+					stocks.valueOf();
+					break;
+					
+				case 3:
+					System.out.println("Enter the Stock Symbol : ");
+					String sellingStockSymbol = scannerObject.next();
+					System.out.println("How many shares would you like to buy?");
+					int sellingSharesAmount = scannerObject.nextInt();
+					stocks.sell(sellingSharesAmount, sellingStockSymbol);
+					stocks.valueOf();
+					break;
+					
+				case 4:
+					System.out.println("the total value of shares : " +stocks.valueOf());
+					break;
+					
+				case 5:
+					stocks.printReport();
+					break;
+					
+				case 6: System.out.println("BYE !");
+						scannerObject.close();
+						System.exit(0);
+				}
+		}
 		
 
 	}
+
 
 }
