@@ -18,6 +18,9 @@ public class Transaction {
 		System.out.println(stockAccount);
 		
 		
+		double stockValue = stockAccount.valueOf();
+		System.out.println("Value is : "+stockValue);
+		
 
 	}
 
