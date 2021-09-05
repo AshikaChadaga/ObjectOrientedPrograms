@@ -23,10 +23,19 @@ public class StockAccount {
 
 	}
 	
+	public double valueOf(){
+		double valueOfAccount=0.0;
+		for(int  index=0;index<companylist.size();index++){
+			valueOfAccount=valueOfAccount+ companylist.get(index).getValue();
+		}
+		return valueOfAccount;
+	}
+	
 	@Override
 	public String toString() {
 		
 		return companylist.toString();
 	}
+	
 	
 }
