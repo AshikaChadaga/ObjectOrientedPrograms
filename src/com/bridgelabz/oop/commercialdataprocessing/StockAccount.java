@@ -49,4 +49,16 @@ public class StockAccount {
 			--shareCount;
 		}
 	}
+	
+	public double valueOf() {
+		
+		totalValue = 0.0;
+		
+		MyNode<CompanyShares> temporaryShares = (MyNode<CompanyShares>) listOfShares.head;
+		while(temporaryShares != null) {
+			totalValue = totalValue + temporaryShares.getKey().getValue();
+			temporaryShares = (MyNode<CompanyShares>) temporaryShares.getNext();
+		}
+		return this.totalValue;
+	}
 }
