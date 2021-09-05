@@ -14,11 +14,12 @@ public class StockAccount {
 	LinkedList<CompanyShares> companylist =new LinkedList<>();
 	
 	
-	public StockAccount(String symbol, int numberOfShares, double sharePrice, String dateTime) {
+	public StockAccount(CompanyShares[] stockArray) {
 		
-		CompanyShares shares = new CompanyShares(symbol, numberOfShares, sharePrice, dateTime);
-		MyNode<CompanyShares> sharesNode = new MyNode<CompanyShares>(shares);
-		companylist.add(sharesNode);
+		for(int arrayIndex = 0; arrayIndex <stockArray.length ; arrayIndex++) {
+			MyNode<CompanyShares> shares = new MyNode<CompanyShares>(stockArray[arrayIndex]);
+			companylist.add(shares);
+		}
 
 	}
 	
