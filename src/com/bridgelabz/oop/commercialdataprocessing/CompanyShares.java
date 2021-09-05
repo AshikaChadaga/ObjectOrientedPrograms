@@ -1,17 +1,21 @@
 package com.bridgelabz.oop.commercialdataprocessing;
 
+import java.time.LocalDateTime;
+
 public class CompanyShares {
 	
 	private String stockSymbol;	
 	private int numberOfShares;	
-	private String dateTime;	
-	private double price;	
+	LocalDateTime dateTime;	
+	private double price;
+	private double value;
 	
-	public CompanyShares(String symbol , int numberOfShares, double price, String dateTime) {
+	public CompanyShares(String symbol , int numberOfShares, double price) {
 		this.stockSymbol = symbol;
 		this.numberOfShares = numberOfShares;
-		this.dateTime = dateTime;
 		this.price = price;
+		this.value = numberOfShares * price;
+		this.setDateTime(LocalDateTime.now());
 	}
 	
 	public String getSymbol() {
@@ -26,25 +30,28 @@ public class CompanyShares {
 		return price;
 	}
 	
-	public String getDateTime() {
+	public LocalDateTime getDateTime() {
 		return dateTime;
 	}
 	
 	public double getValue() {
-		return numberOfShares * price;
+		return value;
+	}
+	
+	public void setValue(double value) {
+		this.value = value;
 	}
 
 	public void setNumberOfShares(int numberOfShares) {
 		this.numberOfShares = numberOfShares;
 	}
 	
-	public void setDateTime(String dateTime) {
+	public void setDateTime(LocalDateTime dateTime) {
 		this.dateTime = dateTime;
 	}
 	
-	@Override
+	@Override 
 	public String toString() {
-		
-		return "\nStock Symbol: "+stockSymbol+"\nNumber Of Shares: "+numberOfShares+"\nPrice Of Share: "+price+"\nDate and Time: "+dateTime+"\n";
+		return "{ Stock Symbol: "+stockSymbol+" Available Shares: "+ numberOfShares+" Price : "+ price+" Date And Time : "+dateTime +" Value : "+this.getValue()+" }";
 	}
 }
