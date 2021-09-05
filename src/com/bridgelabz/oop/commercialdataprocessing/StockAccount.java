@@ -123,4 +123,13 @@ public class StockAccount {
 		}
 		System.out.println("Stock not found");
 	}
+	
+	public void printReport() {
+		
+		System.out.println("----- STOCK REPORT -----");
+		System.out.println("Total Value Of All Stocks Combined: "+ totalValue);
+		listOfShares.printLinkedList();
+	}
+	
+	
 }
