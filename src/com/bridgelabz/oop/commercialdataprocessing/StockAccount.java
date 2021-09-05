@@ -90,4 +90,37 @@ public class StockAccount {
 		}
 		System.out.println("Stock not found");
 	}
+	
+	public void sell(int sharesAmount, String symbol) {
+		
+		MyNode<CompanyShares> temporaryShares = (MyNode<CompanyShares>) listOfShares.head;
+		
+		while(temporaryShares != null) {
+			
+			if(temporaryShares.getKey().getSymbol().equals(symbol)) {
+				
+				int currentShares = temporaryShares.getKey().getNumberOfShares();
+				if(currentShares-sharesAmount < 0) {
+					System.out.println("Sorry! Ran Out Of Shares!!");
+					return;
+				}
+				temporaryShares.getKey().setNumberOfShares(currentShares-sharesAmount);
+				double value = temporaryShares.getKey().getPrice() * (currentShares-sharesAmount);
+				temporaryShares.getKey().setValue(value);
+				this.totalValue = value;
+				
+				MyNode<String> stock = new MyNode<String>(symbol);
+				purchased.push(stock);
+				
+				System.out.println("Successfully Sold "+sharesAmount+" shares of Stock "+symbol+". current value is "+value);
+				
+				temporaryShares.getKey().setDateTime(LocalDateTime.now());
+				MyNode<String> currentDate = new MyNode<String>(LocalDateTime.now().format(format).toString());
+				dateAndTime.enqueue(currentDate);
+				return;
+			}
+			temporaryShares = (MyNode<CompanyShares>)temporaryShares.getNext();
+		}
+		System.out.println("Stock not found");
+	}
 }
